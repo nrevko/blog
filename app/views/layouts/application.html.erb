@@ -3,7 +3,8 @@
 <head>
   <title>Blog</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", params[:controller]  if Blog::Application.assets.find_asset("#{params[:controller]}.js") %>
+  <%= javascript_include_tag "application", "#{params[:controller]}_#{params[:action]}"  if Blog::Application.assets.find_asset("#{params[:controller]}_#{params[:action]}.js") %>
   <%= csrf_meta_tags %>
 </head>
 <body>
