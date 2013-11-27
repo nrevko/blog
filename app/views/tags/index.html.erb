@@ -1,15 +1,6 @@
 <h1>Listing tags</h1>
 
 <table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
   <tbody>
     <% @tags.each do |tag| %>
       <tr>
@@ -19,8 +10,10 @@
         <td><%= link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+       
   </tbody>
 </table>
+<%= will_paginate @tags %>
 
 <br>
 

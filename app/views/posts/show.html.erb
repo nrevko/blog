@@ -4,9 +4,10 @@
   <strong>Body:</strong>
   <%= @post.body %>
 </p>
+
 <div id="current_tags"><strong>Current Tags:</strong>
   <% @post_tags.each do |tag| %>
-    <%= tag.name %>  
+    | <%= tag.name %>  
   <% end %>
 </div>
 
@@ -25,10 +26,14 @@
   <strong>Comments</strong>
   <% @comments.each do |comment| %>
     <div><%= comment.body %></div>
-  <% end %>  
+  <% end %>
+  <%= will_paginate @comments %>
+  
 </div>
 
-<%= render "comments/form" %>
-
+<div>
+  <strong>Your Next Comment</strong>
+  <%= render "comments/form" %>
+</div>
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>

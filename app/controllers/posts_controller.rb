@@ -4,14 +4,14 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.paginate(:page => params[:page]).all
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
     @comment = Comment.new(:post_id => @post.id)
-    @comments = @post.comments
+    @comments = @post.comments.paginate(:page => params[:page]).order('id DESC')
     @post_tags = @post.tags
     @tags = @post.unassociated_tags
   end
@@ -21,7 +21,6 @@ class PostsController < ApplicationController
     @post = Post.new
   end
   
-  #TODO
   def tag
     tag = Tag.find(params[:tag_id])
     @post.tags << tag

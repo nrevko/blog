@@ -1,15 +1,7 @@
 <h1>Listing posts</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Body</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
 
+<table>
   <tbody>
     <% @posts.each do |post| %>
       <tr>
@@ -18,10 +10,11 @@
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
+    <% end %>   
   </tbody>
 </table>
+<%= will_paginate @posts %>
 
-<br>
+
 
 <%= link_to 'New Post', new_post_path %>

@@ -3,5 +3,5 @@ class Tag < ActiveRecord::Base
   
   validates :name, uniqueness: true
 
-  
+  self.per_page = 5
 end
