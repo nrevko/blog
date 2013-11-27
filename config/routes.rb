@@ -1,9 +1,11 @@
 Blog::Application.routes.draw do
-  resources :tags
+  resources :tags 
 
   resources :comments
 
-  resources :posts
+  resources :posts do
+    post 'tag', on: :member
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -4,10 +4,27 @@
   <strong>Body:</strong>
   <%= @post.body %>
 </p>
+<div id="current_tags"><strong>Current Tags:</strong>
+  <% @post_tags.each do |tag| %>
+    <%= tag.name %>  
+  <% end %>
+</div>
+
+<% if @tags.present? %>
+  <br />
+  <div> TAG MY POST:
+    <br />
+    <%= select_tag(:tag_id, options_for_select(@tags) )%>
+    <a id="save_tag" class="button" data-url="<%= tag_post_path(@post.id) %>" href="#_">SaveTag</a>
+  </div>
+<% end %>
+
+<br />
 
 <div>
+  <strong>Comments</strong>
   <% @comments.each do |comment| %>
-    <div><%= comment %></div>
+    <div><%= comment.body %></div>
   <% end %>  
 </div>
 

@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :tag]
 
   # GET /posts
   # GET /posts.json
@@ -12,11 +12,22 @@ class PostsController < ApplicationController
   def show
     @comment = Comment.new(:post_id => @post.id)
     @comments = @post.comments
+    @post_tags = @post.tags
+    @tags = @post.unassociated_tags
   end
 
   # GET /posts/new
   def new
     @post = Post.new
+  end
+  
+  #TODO
+  def tag
+    tag = Tag.find(params[:tag_id])
+    @post.tags << tag
+    respond_to do |format|
+      format.json { head :no_content }
+    end
   end
 
   # GET /posts/1/edit
